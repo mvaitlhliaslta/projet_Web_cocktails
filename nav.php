@@ -2,21 +2,7 @@
 
 		//fonction pour l'affichage du fil d'Ariane
 		//$root => la categorie dans laquelle se trouve l'utilisateur
-		function init_ariane($root)
-		{
-			global $Hierarchie;
-			$act_root = $root;
-			$result = '
-	<p>';
-			
-			while($act_root != 'Aliment')
-			{		
-				$upper_cat = $Hierarchie[$act_root]['super-categorie'][0];
-				$result = substr_replace($result, " / ".'<a href="?current_cat='.$upper_cat.'">'.$upper_cat.'</a>', 6, 0);
-				$act_root = $upper_cat;
-			}
-			return $result." / ".'<a href="?current_cat='.$root.'">'.$root.'</a></p>'."\n";
-		}
+		
 		
 		
 		//creation de la chaine de caracteres des sous-categorie de la categorie courrante

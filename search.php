@@ -1,8 +1,8 @@
 <?php opcache_reset();
+	//include 'Donnees.inc.php';
 	if (isset($_GET["submit"])) { // check if search entry was submitted
 		if (isset($_GET["search_input"])) { // check if search_input exists
 			
-
 			$aliments_souhaites = array();
 			$aliments_non_souhaites = array();
 			$aliments_non_reconnus = array();
@@ -26,7 +26,7 @@
 				preg_match_all($pattern, $user_entry, $matches);
 				$matches = array_reverse($matches);
 				$matches = array_pop($matches);
-				include 'Donnees.inc.php';
+				
 				
 				foreach ($matches as $key => $aliment) {
 					
@@ -51,41 +51,35 @@
 						}
 					}
 				}
-				//array_push($_GET, $aliments_souhaites);
-				$_GET["aliments_souhaites"] = $aliments_souhaites;
-				$_GET["aliments_non_souhaites"] = $aliments_non_souhaites;
-				$_GET["aliments_non_reconnus"] = $aliments_non_reconnus;
+				
 				$message = "";
-				if (!empty($_GET["aliments_souhaites"])) {
-					$message .= "aliments souhaités: ".implode(', ', $_GET["aliments_souhaites"])."<br>";
+				if (!empty($aliments_souhaites)) {
+					$message .= "<p>aliments souhaités: ".implode(', ', $aliments_souhaites)."</p>\n";
 				}
-				if (!empty($_GET["aliments_non_souhaites"])) {
-					$message .= "aliments non souhaités: ".implode(', ', $_GET["aliments_non_souhaites"])."<br>";
+				if (!empty($aliments_non_souhaites)) {
+					$message .= "<p>aliments non souhaités: ".implode(', ', $aliments_non_souhaites)."</p>\n";
 				}
-				if (!empty($_GET["aliments_non_reconnus"])) {
-					$message .= "aliments non reconnus: ".implode(', ', $_GET["aliments_non_reconnus"])."<br>";
+				if (!empty($aliments_non_reconnus)) {
+					$message .= "<p>aliments non reconnus: ".implode(', ', $aliments_non_reconnus)."</p>\n";
 				}
-				if (empty($_GET["aliments_souhaites"]) && empty($_GET["aliments_souhaites"])) {
-					$message = "Problème dans votre requête : recherche impossible<br>";
+				// case: impossible display search
+				if (empty($aliments_souhaites) && empty($aliments_non_souhaites)) {
+					$message = "<p>Problème dans votre requête : recherche impossible</p>\n";
 				}
 			}
-			echo "$message";
 		}
 	}
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>yes</title>
-</head>
-<body>
-
+<div class="search">
 Rechercher:
 <form method="get" action="#">
 <input type="text" name="search_input">
 <input type="submit" name="submit" value="Valider" />
 </form >
-
-</body>
-</html>
+<?php
+if (isset($_GET["submit"])){
+	echo "$message";
+}
+?>
+</div>

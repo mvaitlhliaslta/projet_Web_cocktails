@@ -1,5 +1,6 @@
 <?php
 	include("Donnees.inc.php");
+	include 'functions.inc.php';
 	//on verifie si l'aliment courant est precisier dans l'entete
 	//et on affecte sa valeur en fonction de
 	if(isset($_GET["current_cat"]))
@@ -44,12 +45,21 @@
 <body>
 
 <nav>
+	<?php
+		include 'search.php';
+	?>
 	<!-- INSERT : barre de recherche, button de navigation (nav, favorites, search), button de UserManagement -->
 </nav>
 
 <main>
 	<?php
-		include("displays/displayNav.php");
+		if (isset($_GET["submit"])){
+			include 'displays/displaySearch.php';
+		}
+		else
+			include("displays/displayNav.php");
+		
+		
 	?>
 </main>
 
