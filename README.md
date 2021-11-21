@@ -10,7 +10,7 @@ To start coding:
   - `git clone https://github.com/mvaitlhliaslta/projet_Web_cocktails`
   
   or (try the first one then, if fail, the second):
-  - `git clone https://github.com/mvaitlhliaslta/projet_Web_cocktails.git`
+    - `git clone https://github.com/mvaitlhliaslta/projet_Web_cocktails.git`
   
   - `git pull`
  
