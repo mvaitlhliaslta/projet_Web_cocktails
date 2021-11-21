@@ -7,6 +7,8 @@ see all commands in "git_commands.png".
 - git pull to update
 
 To start coding:
+
+navigate to your Web server directory and enter the following commands:
   - `git clone https://github.com/mvaitlhliaslta/projet_Web_cocktails`
   
   or (try the first one then, if fail, the second):
