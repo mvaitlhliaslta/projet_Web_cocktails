@@ -15,10 +15,13 @@ To start coding:
   - `git pull`
  
 if `git pull` doesn't work:
-    - generate token
-    - `git config --global credential.helper cache`
-    - `git pull`
-    if `git pull` doesnt work:
-      - `git pull https://<token>@github.com/mvaitlhliaslta/projet_Web_cocktails`
-    - `git branch --set-upstream-to=origin/master`
+- generate token
+- `git config --global credential.helper cache`
+- `git pull`
+
+if `git pull` doesnt work:
+- `git pull https://<token>@github.com/mvaitlhliaslta/projet_Web_cocktails`
+
+Finally:
+- `git branch --set-upstream-to=origin/master`
     
