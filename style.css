@@ -1,0 +1,48 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  background: #eee;
+  overflow-x: hidden;
+  padding-left: 15px;
+}
+
+.photo img{
+	width: 150px;
+	height: 150px;
+}
+
+.synthDisp {
+  margin-left: 200px; 
+  font-size: 15px; 
+  padding: 0px 10px;
+}
+
+.synthDisp ul {
+  columns: 3;
+}
+
+.wrapper {
+  display: grid;
+  width: 540px;
+  height: auto;
+  grid-template-columns: 1px 1px 1px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.wrapper :first-child {
+    align-self: center;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
