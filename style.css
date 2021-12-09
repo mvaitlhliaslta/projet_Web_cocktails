@@ -7,39 +7,47 @@ body {
   top: 0px;
   height: 100%;
   width: 200px;
-  position: fixed;
   z-index: 1;
   background: #eee;
   overflow-x: hidden;
+  margin-right: 80%;
   padding-left: 15px;
+  float: left;
 }
 
 .photo img{
-	width: 150px;
 	height: 150px;
 }
 
 .synthDisp {
-  margin-left: 200px; 
-  font-size: 15px; 
-  padding: 0px 10px;
-}
-
-.synthDisp ul {
-  columns: 3;
-}
-
-.wrapper {
   display: grid;
-  width: 540px;
-  height: auto;
-  grid-template-columns: 1px 1px 1px;
-  align-items: start;
-  justify-content: space-between;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.wrapper :first-child {
-    align-self: center;
+.navDisp {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+}
+
+.synthRecipe {
+  border: 1px solid black;
+  width: available;
+  height: available;
+}
+
+.recipePrep {
+	width:100%;
+}
+
+.recipePrep th, td{
+  border: 1px solid black;
+  width: 50%;
+  text-align: center;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
 }
 
 @media screen and (max-height: 450px) {

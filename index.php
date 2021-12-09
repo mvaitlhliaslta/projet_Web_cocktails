@@ -9,6 +9,14 @@
 	{
 		$current_root = 'Aliment';
 	}
+	
+	if(isset($_GET["dispState"]))
+	{
+		$disp = $_GET["dispState"];
+	} else
+	{
+		$disp = 'synth';
+	}
 ?>
 
 <!DOCTYPE html>
