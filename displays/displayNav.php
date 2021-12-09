@@ -61,6 +61,7 @@
 			$result = $result.'
 						</ul>
 					</div>
+					<button class="favoriteBtnOff" type="button" onClick="fav(this)"></button>
 				</div>
 			
 			';
@@ -79,6 +80,7 @@
 			<div class="detailRecipe">
 				<div class="title">
 					<p>'.$recipe['titre'].'</p>
+					<button class="favoriteBtnOff" type="button" onClick="fav(this)"></button>
 				</div>';
 				
 			$imgFormat = array('.png', '.jpg');

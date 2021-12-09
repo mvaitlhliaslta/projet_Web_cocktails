@@ -18,6 +18,19 @@
 		$disp = 'synth';
 	}
 ?>
+<script>
+	function fav(btn)
+	{
+		if(btn.className == "favoriteBtnOff")
+		{
+			btn.className = "favoriteBtnOn";
+		}
+		else
+		{
+			btn.className = "favoriteBtnOff";
+		}
+	}
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -41,5 +54,4 @@
 </main>
 
 </body>
-
 </html>

@@ -39,6 +39,20 @@ body {
 	width:100%;
 }
 
+.favoriteBtnOff {
+	float: right;
+	width:50px;
+	height:50px;
+	background: rgba(0, 0, 0, 0) url("./Photos/fav_off.png") repeat scroll 0% 0%;
+}
+
+.favoriteBtnOn {
+	float: right;
+	width:50px;
+	height:50px;
+	background: rgba(0, 0, 0, 0) url("./Photos/fav_on.png") repeat scroll 0% 0%;
+}
+
 .recipePrep th, td{
   border: 1px solid black;
   width: 50%;
