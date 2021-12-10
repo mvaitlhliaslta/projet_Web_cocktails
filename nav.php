@@ -1,10 +1,5 @@
 	<?php
 
-		//fonction pour l'affichage du fil d'Ariane
-		//$root => la categorie dans laquelle se trouve l'utilisateur
-		
-		
-		
 		//creation de la chaine de caracteres des sous-categorie de la categorie courrante
 		$disp_sous_cat = '
 	<ul>';
@@ -14,7 +9,7 @@
 			foreach($Hierarchie[$current_root]['sous-categorie'] as $under_cat)
 			{
 				$disp_sous_cat = $disp_sous_cat.'
-		<li><a href="?current_cat='.$under_cat.'">'.$under_cat.'</a></li>';
+		<li><a href="?current_cat='.spaceToPlus($under_cat).'">'.$under_cat.'</a></li>';
 			}
 		}
 		

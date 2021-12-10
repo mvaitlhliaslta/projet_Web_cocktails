@@ -1,6 +1,5 @@
 <?php 
-	
-	
+
 	$sorted_recettes = array();
 	$valide_recette = true;
 
@@ -40,7 +39,7 @@
 	arsort($sorted_recettes);
 	//print_r($sorted_recettes);
 	// display
-	echo "<p>Recettes contenant les aliments souhaités</p>";
+	echo "<p>Recettes contenant les aliments souhaités (".implode(', ', $aliments_souhaites)."): </p>";
 	foreach ($sorted_recettes as $recette => $occurence) {
 		foreach ($Recettes as $recipe_key => $arr_content) {
 			if (strcmp($arr_content["titre"], $recette) == 0){
@@ -50,7 +49,7 @@
 	}
 
 	// display
-	echo "<p>Recettes ne contenant pas les aliments non souhaités:</p>";
+	echo "<p>Recettes ne contenant pas les aliments non souhaités (".implode(', ', $aliments_non_souhaites)."): </p>";
 	
 	$recettes_sans_aliment_non_souhaites = array();
 	foreach ($aliments_non_souhaites as $key => $aliment_non_souhaite) {

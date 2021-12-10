@@ -72,7 +72,7 @@
 ?>
 
 <div class="search">
-Rechercher:
+<p>Rechercher:</p>
 <form method="get" action="#">
 <input type="text" name="search_input">
 <input type="submit" name="submit" value="Valider" />

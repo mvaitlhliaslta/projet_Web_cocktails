@@ -2,64 +2,69 @@
 	include("Donnees.inc.php");
 	include 'functions.inc.php';
 	//on verifie si l'aliment courant est precisier dans l'entete
-	//et on affecte sa valeur en fonction de
+	//et on affecte sa valeur en fonction
 	if(isset($_GET["current_cat"]))
 	{
-		$current_root = $_GET["current_cat"];
+		$current_root = plusToSpace($_GET["current_cat"]);
 	} else 
 	{
 		$current_root = 'Aliment';
 	}
-	
-	if(isset($_GET["dispState"]))
-	{
-		$disp = $_GET["dispState"];
-	} else
-	{
-		$disp = 'synth';
-	}
 ?>
-<script>
-	function fav(btn)
-	{
-		if(btn.className == "favoriteBtnOff")
-		{
-			btn.className = "favoriteBtnOn";
-		}
-		else
-		{
-			btn.className = "favoriteBtnOff";
-		}
-	}
-</script>
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
 	<title>Gestion de cocktails</title>
-	<link rel="stylesheet" href="style.css">
+	<script>
+		function fav(btn)
+		{
+			if(btn.className == "favoriteBtnOff")
+			{
+				btn.className = "favoriteBtnOn";
+			}
+			else
+			{
+				btn.className = "favoriteBtnOff";
+			}
+		}
+	</script>
+	<!--<link rel="stylesheet" href="style.css">-->
 </head>
 
 <body>
-
-<nav>
+<header>
+	<!-- navigation button -->
+	<input id="navBtn" type="button" value="Navigation" 
+       onclick="window.location.href = '?'" />
+	
+	<!-- search engine -->
 	<?php
 		include 'search.php';
 	?>
-	<!-- INSERT : barre de recherche, button de navigation (nav, favorites, search), button de UserManagement -->
-</nav>
+
+</header>
+
+<!-- nav section only exists when no search query was sent -->
+<?php 
+	if (!isset($_GET["submit"])) { ?>
+		<nav>
+			<?php 
+				include 'nav.php';
+			?>
+		</nav>
+	<?php }
+?>
+
 
 <main>
 	<?php
-		if (isset($_GET["submit"])){
+		if (isset($_GET["submit"])){ // of search querry submitted
 			include 'displays/displaySearch.php';
 		}
 		else
-			include("displays/displayNav.php");
-		
-		
+			include("displays/displayNav.php");	
 	?>
 </main>
 

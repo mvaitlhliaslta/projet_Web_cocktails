@@ -1,4 +1,12 @@
 <?php 
+	// used in <a href=$link> where $link isn't allowed to have " "
+	function spaceToPlus($string){
+		return str_replace(" ", "+", $string);
+	}
+	function plusToSpace($string){
+		return str_replace("+", " ", $string);
+	}
+
 	function synthDisplay($recipeIndex)
 		{
 			global $Recettes;
@@ -8,7 +16,7 @@
 			'
 				<div class="synthRecipe">
 					<div class="title">
-						<a href="?current_cat='.$current_root.'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
+						<a href="?current_cat='.spaceToPlus($current_root).'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
 					</div>';
 			
 			$imgFormat = array('.png', '.jpg');
@@ -62,6 +70,10 @@
 				}
 			}
 		}
+
+
+	//fonction pour l'affichage du fil d'Ariane
+	//$root => la categorie dans laquelle se trouve l'utilisateur		
 	function init_ariane($root)
 		{
 			global $Hierarchie;
@@ -72,9 +84,9 @@
 			while($act_root != 'Aliment')
 			{		
 				$upper_cat = $Hierarchie[$act_root]['super-categorie'][0];
-				$result = substr_replace($result, " / ".'<a href="?current_cat='.$upper_cat.'">'.$upper_cat.'</a>', 6, 0);
+				$result = substr_replace($result, " / ".'<a href="?current_cat='.spaceToPlus($upper_cat).'">'.$upper_cat.'</a>', 6, 0);
 				$act_root = $upper_cat;
 			}
-			return $result." / ".'<a href="?current_cat='.$root.'">'.$root.'</a></p>'."\n";
+			return $result." / ".'<a href="?current_cat='.spaceToPlus($root).'">'.$root.'</a></p>'."\n";
 		}
 ?>
