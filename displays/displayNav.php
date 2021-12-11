@@ -1,4 +1,4 @@
-<div class="navDisp">
+<!--<div class="navDisp">-->
 	<?php
 		// get display state (either "synthetic" or "detailed")
 		if(isset($_GET["dispState"]))
@@ -22,4 +22,4 @@
 		{
 			include 'displaySynth.php';
 		}?>
-</div>
+<!--</div>-->

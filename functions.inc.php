@@ -12,12 +12,20 @@
 			global $Recettes;
 			global $current_root;
 			$recipe = $Recettes[$recipeIndex];
+			$result = '
+				<div class="col-sm-4 border">
+					<div class="title">
+						<a href="?current_cat='.spaceToPlus($current_root).'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
+					</div>';
+
+
+/*
 			$result = 
 			'
 				<div class="synthRecipe">
 					<div class="title">
 						<a href="?current_cat='.spaceToPlus($current_root).'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
-					</div>';
+					</div>';*/
 			
 			$imgFormat = array('.png', '.jpg');
 			foreach($imgFormat as $format)

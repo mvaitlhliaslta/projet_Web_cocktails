@@ -8,7 +8,7 @@
 		foreach ($Recettes as $recipe_key => $arr_content) {
 			if (in_array($aliment, array_values($arr_content["index"]))) { 
 
-				//recette has no aliment in aliment_non_souhaites
+				// filters if recette has no aliment in aliment_non_souhaites
 				foreach ($aliments_non_souhaites as $key => $aliment_non_souhaite) {
 					if (in_array($aliment_non_souhaite, array_values($arr_content["index"]))) {
 						$valide_recette = false;
@@ -18,6 +18,7 @@
 				if($valide_recette){
 
 					$title = $arr_content["titre"];
+
 					// add to sorted_recettes if not already in it
 					if (!array_key_exists($title , $sorted_recettes)) {
 					// set number of matches by 1 / first match
@@ -37,8 +38,8 @@
 
 	// sort array
 	arsort($sorted_recettes);
-	//print_r($sorted_recettes);
-	// display
+	
+	// display 
 	echo "<p>Recettes contenant les aliments souhaités (".implode(', ', $aliments_souhaites)."): </p>";
 	foreach ($sorted_recettes as $recette => $occurence) {
 		foreach ($Recettes as $recipe_key => $arr_content) {

@@ -2,7 +2,7 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-.sidenav {
+.nav {
   left: 0px;
   top: 0px;
   height: 100%;
@@ -10,9 +10,9 @@ body {
   z-index: 1;
   background: #eee;
   overflow-x: hidden;
-  margin-right: 80%;
   padding-left: 15px;
   float: left;
+  margin-right: 1%;
 }
 
 .photo img{

@@ -1,4 +1,4 @@
-<?php opcache_reset();
+<?php 
 	//include 'Donnees.inc.php';
 	if (isset($_GET["submit"])) { // check if search entry was submitted
 		if (isset($_GET["search_input"])) { // check if search_input exists
@@ -22,6 +22,7 @@
 				// magic regex, it works, don't question it.
 				$pattern = '#([-\+]?"[a-zA-Z\'\s]+")|([-\+]?[a-zA-Z\'-]+)#i'; 
 				//				+		d'orange 		-		zae-az
+				
 				// preg_match_all returns a lot of stuff, we only need the first key
 				preg_match_all($pattern, $user_entry, $matches);
 				$matches = array_reverse($matches);

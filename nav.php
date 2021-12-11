@@ -18,7 +18,7 @@
 	?>
 
 <!-- Affichage HTML des chaines de caracteres du fil d'Ariane et des sous-categories -->
-	<div class="sidenav">
+	<div class="nav">
 	<p><strong>Aliment Courant</strong></p>
 	<?php echo(init_ariane($current_root)); ?>
 	<p>Sous-catégories :</p>
