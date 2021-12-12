@@ -16,7 +16,8 @@
 				<div class="col-sm-4 border">
 					<div class="title">
 						<a href="?current_cat='.spaceToPlus($current_root).'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
-					</div>';
+					</div>
+					<button class="favoriteBtnOff" type="button" onClick="fav(this)"></button>';
 
 
 /*
