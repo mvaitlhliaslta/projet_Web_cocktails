@@ -1,7 +1,9 @@
 <?php
-
-	include("Donnees.inc.php");
+	session_start();
+	
+	include "Donnees.inc.php";
 	include 'functions.inc.php';
+
 	//on verifie si l'aliment courant est precisier dans l'entete
 	//et on affecte sa valeur en fonction
 	if(isset($_GET["current_cat"]))
@@ -44,6 +46,19 @@
 	<!-- search engine -->
 	<?php
 		include 'search.php';
+	?>
+
+
+	<!-- Affichage d'un contenu differant si un user est connecter ou pas -->
+	<?php
+	// verification si un user est connecter 
+
+	include "connection_check.php";
+	if(isset($_SESSION["username"])){
+		include("logged.php");
+	}else{
+		include("connection.php");
+	}
 	?>
 
 </header>
