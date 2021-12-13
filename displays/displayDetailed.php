@@ -19,12 +19,10 @@
 				<p>'.$recipe['titre'].'</p>';
 
 	if($in_favorite) {
-		$button = '<button class="favoriteBtnOn" type="button" onClick="fav(this)"></button>
-			</div>';
+		$button = '<button class="favoriteBtnOn" type="button" onClick="fav(this,'.$_GET["ID"].')"></button>';
 	}
 	else{
-		$button = '<button class="favoriteBtnOff" type="button" onClick="fav(this)"></button>
-			</div>';
+		$button = '<button class="favoriteBtnOff" type="button" onClick="fav(this,'.$_GET["ID"].')"></button>';
 	}
 	$result .= $button;
 	

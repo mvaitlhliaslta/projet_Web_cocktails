@@ -120,7 +120,7 @@ date_default_timezone_set('Europe/Paris');
 			}
 		}
 
-        $path = "user\\".$_POST["username"];
+        $path = "user/".$_POST["username"];
         if(file_exists($path)){
             $incorrectFields[] = "Ce login exite déja";
         }
@@ -160,11 +160,11 @@ date_default_timezone_set('Europe/Paris');
                 "code_postal" => $code_postal,
                 "ville" => $ville,
                 "numero_de_telephone" => $numero_de_telephone,
-                "favorite" => array(),
+                "favorite" => array()
             );
 
             //encodeage de l'array dans un ficher JSON
-            //set cookie pour recup le nom de l'user 
+
             file_put_contents($path, JSON_encode($user));
             header("Location:index.php");
         }

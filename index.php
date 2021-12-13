@@ -26,10 +26,13 @@
 
 <body>
 <header>
+	<!-- Favorite button-->
+	<input id="favBtn" type="button" value="favorite" 
+       onclick="window.location.href = '?favorites=1'" />
 	<!-- navigation button -->
 	<input id="navBtn" type="button" value="Navigation" 
        onclick="window.location.href = '?'" />
-	
+
 	<!-- search engine -->
 	<?php
 		include 'search.php';
@@ -43,49 +46,68 @@
 	include "connection_check.php";
 	if(isset( $_SESSION["user"]["username"])){
 		include("logged.php");
-	echo "
-	<script>
-		function fav(btn,recipeIndex)
-		{
-			if(btn.className == \"favoriteBtnOff\")
+		?>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script>
+			function fav(btn,recipeIndex)
 			{
-				btn.className = \"favoriteBtnOn\"
-				window.alert(\"recipeIndex\");
+				if(btn.className == "favoriteBtnOff")
+				{
+					btn.className = "favoriteBtnOn";
+					//window.alert(recipeIndex);
+					$.ajax({
+						type: 'GET',
+						url: './addToFavs.php',
+						data: 'ID=' + encodeURIComponent(recipeIndex),
+						success: function(data){
+							if (data) {
+								document.getElementById('message').innerHTML = data;
+							}
+						}
+					})
+
+				}
+				else
+				{
+					btn.className = "favoriteBtnOff";
+					$.ajax({
+						type: 'GET',
+						url: './removeFromFavs.php',
+						data: 'ID=' + encodeURIComponent(recipeIndex),
+						success: function(data){
+							if (data) {
+								document.getElementById('message').innerHTML = data;
+							}
+						}
+					})
+				}
 			}
-			else
-			{
-				btn.className = \"favoriteBtnOff\";
-			}
-		}
-	</script>
-	";
+		</script>
+		<?php
 	}else{
 		include("connection.php");
 	}
 	?>
-
+	<div id="message"></div>
 </header>
 
 <!-- nav section only exists when no search query was sent -->
-<?php 
-	if (!isset($_GET["search"])) { ?>
+<?php if (!isset($_GET["search"])) { ?>
 		<nav>
-			<?php 
-				include 'nav.php';
-			?>
+			<?php include 'nav.php'; ?>
 		</nav>
-	<?php }
-?>
+<?php } ?>
 
 
 <main>
-	<?php
-		if (isset($_GET["search"])){ // of search querry submitted
+	<?php if (isset($_GET["search"])){ // of search querry submitted
 			include 'displays/displaySearch.php';
-		}
-		else
+		} elseif (isset($_GET["favorites"])) {
+			include 'listFavs.php';
+		} else {
 			include("displays/displayNav.php");	
-	?>
+		} ?>
 </main>
 
 </body>

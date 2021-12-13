@@ -76,7 +76,7 @@
 <p>Rechercher:</p>
 <form method="get" action="#">
 <input type="text" name="search_input">
-<input type="submit" name="search" value="Valider" />
+<input type="submit" name="search" value="Rechercher" />
 </form >
 <?php
 if (isset($_GET["submit"])){

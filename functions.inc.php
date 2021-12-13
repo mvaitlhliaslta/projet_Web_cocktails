@@ -11,6 +11,7 @@
 		{
 			global $Recettes;
 			global $current_root;
+			$recipe = $Recettes[$recipeIndex];
 			if (isset($_SESSION["user"]["username"])) {
 				$path = "user/".$_SESSION["user"]["username"];
 				$user = json_decode(file_get_contents($path), true);
@@ -21,31 +22,23 @@
 			else{
 				$in_favorite = false;
 			}
-						// check if recette in favorite
-			if ($in_favorite) {
-				$button = '<button class="favoriteBtnOn" type="button" onClick="fav(this)"></button>';
-			}
-			else{
-				$button = '<button class="favoriteBtnOff" type="button" onClick="fav(this)"></button>';
-			}
-			$result .= $button;
+			
 
-			$recipe = $Recettes[$recipeIndex];
 			$result = '
 				<div class="col-sm-4 border">
 					<div class="title">
 						<a href="?current_cat='.spaceToPlus($current_root).'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
-					</div>
-					<button class="favoriteBtnOff" type="button" onClick="fav(this,'.$recipeIndex.')"></button>';
+					</div>';
 
+			// check if recette in favorite
+			if ($in_favorite) {
+				$button = '<button class="favoriteBtnOn" type="button" onClick="fav(this,'.$recipeIndex.')"></button>';
+			}
+			else{
+				$button = '<button class="favoriteBtnOff" type="button" onClick="fav(this,'.$recipeIndex.')"></button>';
+			}
 
-/*
-			$result = 
-			'
-				<div class="synthRecipe">
-					<div class="title">
-						<a href="?current_cat='.spaceToPlus($current_root).'&dispState=detail&ID='.$recipeIndex.'">'.$recipe['titre'].'</a>
-					</div>';*/
+			$result .= $button;
 			
 			$imgFormat = array('.png', '.jpg');
 			foreach($imgFormat as $format)
