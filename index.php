@@ -38,6 +38,9 @@
 		include 'search.php';
 	?>
 
+	<a href="?favDisp=<?php if(isset($_SESSION['user'])){ echo "true"; } else { echo "false"; } ?>">
+		<button type="button">Recettes favorites</button>
+	</a>
 
 	<!-- Affichage d'un contenu differant si un user est connecter ou pas -->
 	<?php
@@ -93,6 +96,7 @@
 </header>
 
 <!-- nav section only exists when no search query was sent -->
+
 <?php if (!isset($_GET["search"])) { ?>
 		<nav>
 			<?php include 'nav.php'; ?>
@@ -103,6 +107,7 @@
 <main>
 	<?php if (isset($_GET["search"])){ // of search querry submitted
 			include 'displays/displaySearch.php';
+
 		} elseif (isset($_GET["favorites"])) {
 			include 'listFavs.php';
 		} else {
