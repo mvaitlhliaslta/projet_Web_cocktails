@@ -66,6 +66,9 @@
 		include 'search.php';
 	?>
 
+	<a href="?favDisp=<?php if(isset($_SESSION['user'])){ echo "true"; } else { echo "false"; } ?>">
+		<button type="button">Recettes favorites</button>
+	</a>
 
 	<!-- Affichage d'un contenu differant si un user est connecter ou pas -->
 	<?php
@@ -98,6 +101,7 @@
 		if (isset($_GET["search"])){ // of search querry submitted
 			include 'displays/displaySearch.php';
 		}
+		//else if(isset(
 		else
 			include("displays/displayNav.php");	
 	?>
