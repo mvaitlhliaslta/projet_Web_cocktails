@@ -65,7 +65,7 @@
 
 <!-- nav section only exists when no search query was sent -->
 <?php 
-	if (!isset($_GET["submit"])) { ?>
+	if (!isset($_GET["search"])) { ?>
 		<nav>
 			<?php 
 				include 'nav.php';
@@ -77,7 +77,7 @@
 
 <main>
 	<?php
-		if (isset($_GET["submit"])){ // of search querry submitted
+		if (isset($_GET["search"])){ // of search querry submitted
 			include 'displays/displaySearch.php';
 		}
 		else

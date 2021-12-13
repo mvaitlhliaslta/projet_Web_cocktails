@@ -1,6 +1,6 @@
 <?php 
 	//include 'Donnees.inc.php';
-	if (isset($_GET["submit"])) { // check if search entry was submitted
+	if (isset($_GET["search"])) { // check if search entry was submitted
 		if (isset($_GET["search_input"])) { // check if search_input exists
 			
 			$aliments_souhaites = array();
@@ -76,7 +76,7 @@
 <p>Rechercher:</p>
 <form method="get" action="#">
 <input type="text" name="search_input">
-<input type="submit" name="submit" value="Valider" />
+<input type="submit" name="search" value="Valider" />
 </form >
 <?php
 if (isset($_GET["submit"])){
