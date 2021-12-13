@@ -15,7 +15,7 @@
 <?php
     // on recuper le ficher qui a le mot de l'user
     // on decode le ficher JSON
-    $path = "user\\". $_SESSION["user"]["username"];
+    $path = "user/". $_SESSION["user"]["username"];
     $user = json_decode(file_get_contents($path), true);
 
     //on echo tout les données 

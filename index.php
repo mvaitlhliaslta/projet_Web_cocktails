@@ -17,22 +17,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>	
 	<meta charset="utf-8">
 	<title>Gestion de cocktails</title>
-	<script>
-		function fav(btn)
-		{
-			if(btn.className == "favoriteBtnOff")
-			{
-				btn.className = "favoriteBtnOn";
-			}
-			else
-			{
-				btn.className = "favoriteBtnOff";
-			}
-		}
-	</script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -59,6 +46,22 @@
 	include "connection_check.php";
 	if(isset( $_SESSION["user"]["username"])){
 		include("logged.php");
+	echo "
+	<script>
+		function fav(btn,recipeIndex)
+		{
+			if(btn.className == \"favoriteBtnOff\")
+			{
+				btn.className = \"favoriteBtnOn\"
+				window.alert(\"recipeIndex\");
+			}
+			else
+			{
+				btn.className = \"favoriteBtnOff\";
+			}
+		}
+	</script>
+	";
 	}else{
 		include("connection.php");
 	}
