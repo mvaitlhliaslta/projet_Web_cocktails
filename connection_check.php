@@ -21,7 +21,7 @@ if(isset($_POST['submit_btn'])){
   }elseif(!$ok){
     $user = json_decode(file_get_contents($path), true);
     if($user["username"] == $_POST["username"] && $user["password"] == $_POST["password"]){
-      $_SESSION["username"] = $user["username"];
+      $_SESSION["user"]["username"] = $user["username"];
     }else{
       echo " Le login ou le mot de passe n'est pas bon ! ";
     }

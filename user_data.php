@@ -26,49 +26,154 @@
     Prenom: ".$user['prenom'],"<br/>
     Genre: ".$user['genre'],"<br/>
     Email: ".$user['email'],"<br/>
-    Date de naissence: ".$user['date_de_naissence'],"<br/>
+    Date de naissance: ".$user['date_de_naissance'],"<br/>
     Adresse: ".$user['adresse'],"<br/>
     Code postal: ".$user['code_postal'],"<br/>
     Ville: ".$user['ville'],"<br>
     Numéro de telephone: ".$user['numero_de_telephone'];
 
-if(isset($_POST['modification_btn'])){
-    //on recupere tout ($_POST)
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $genre = $_POST['genre'];
-    $email = $_POST['email'];
-    $date_de_naissence = $_POST['date_de_naissence'];
-    $adresse = $_POST['adresse'];
-    $code_postal = $_POST['code_postal'];
-    $ville = $_POST['ville'];
-    $numero_de_telephone = $_POST['numero_de_telephone'];
-    //controle si tout les données sont bien rentré (pas fini)
-    //DEV ----- DEV
-    $path = "user\\".$_POST["username"];
-    
-    //on stocke tout dans un array
-    $user = array(
-        "username" => $username,
-        "password" => $password,
-        "nom" => $nom,
-        "prenom" => $prenom,
-        "genre" => $genre,
-        "email" => $email,
-        "date_de_naissence" => $date_de_naissence,
-        "adresse" => $adresse,
-        "code_postal" => $code_postal,
-        "ville" => $ville,
-        "numero_de_telephone" => $numero_de_telephone,
+if (isset($_POST['modification_btn'])) {
+        
+        if(isset($_POST['password']) &&  $_POST['password'] == null){
+            $incorrectFields[] = "Le mot de passe est obligatoire ! ";
+        }
 
-    );
-    //encodeage de l'array dans un ficher JSON
-    //set cookie pour recup le nom de l'user 
-    file_put_contents($path, JSON_encode($user));
-    header("Location:index.php");
-}
+		//Nom
+		if(isset($_POST['nom']) && $_POST['nom'] != null) {
+			if (!preg_match("/^[a-zA-Z' -]+$/", trim($_POST['nom']))) {
+				$incorrectFields[] = "Nom";
+			}
+		}
+
+
+		//Prénom
+		if(isset($_POST['prenom']) && $_POST['prenom'] != null) {
+			if (!preg_match("/^[a-zA-Z' -]+$/", trim($_POST['prenom']))) {
+				$incorrectFields[] = "Prénom";
+			}
+		}
+
+		//Sexe
+
+		if(isset($_POST['genre']) && $_POST['genre'] != null) {
+			if(($_POST['genre']) != ("male" || "female")) {
+				$incorrectFields[] = "Genre";
+			}
+		}
+
+		//Date de naissance
+
+		if(isset($_POST['date_de_naissance']) && $_POST['date_de_naissance'] != null) {
+			list($year, $month, $day) = explode("-", $_POST['date_de_naissance']);
+			if (!checkdate($month, $day, $year)) { 
+				$incorrectFields[] = "Date de naissance";
+			} else {
+
+				$birthDate = new Datetime($_POST['date_de_naissance']);
+				$current_date = new Datetime();
+                
+                $diff = $birthDate->diff($current_date);
+
+				if ($diff > 18) {
+				} else {
+					$incorrectFields[] = "Date de naissance";
+				}
+			}
+
+		}
+
+
+		//Adresse
+		if(isset($_POST['adresse']) && $_POST['adresse'] != null) {
+			//adresse ne peut pas être rempli sans le code postal et la ville qui vont avec
+			//mis dans deux if différents parce qu'on peut par ex avoir rempli la ville et l'adresse mais pas le code postal
+			//dans ce cas, code postal est ajouté dans incorrectFields à la fois dans ville et dans adresse 
+			if ((isset($_POST['ville']) && $_POST['ville'] == null && !in_array("ville", $incorrectFields))) { 
+				$incorrectFields[] = "Ville";				
+			}
+			if ((isset($_POST['code_postal']) && $_POST['code_postal'] == null && !in_array("code postal", $incorrectFields))) { 
+				$incorrectFields[] = "Code postal";		
+			}
+		}
+
+
+		//Code postal
+		if(isset($_POST['code_postal']) && $_POST['code_postal'] != null) {
+			//prend en compte les codes postaux de la Corse, le plus petit code postal existant (01000, celui de Bourg-en-Bresse) et le plus grand existant (99999, celui de la Poste)
+			if (!preg_match("/^(0[1-9][0-9]{3})$|^([1-9][0-9]{4})$|^(2[AB][0-9]{3})$/", trim($_POST['code_postal']))) { 
+				$incorrectFields[] = "Code postal";
+			}
+			//code postal ne peut pas être rempli sans l'adresse et la ville qui vont avec
+			if ((isset($_POST['adresse']) && $_POST['adresse'] == null && !in_array("adresse", $incorrectFields))) { 
+				$incorrectFields[] = "Adresse";
+			}
+			if ((isset($_POST['ville']) && $_POST['ville'] == null && !in_array("ville", $incorrectFields))) { 
+				$incorrectFields[] = "Ville";
+			}
+		}
+
+
+		//Ville
+		if(isset($_POST['ville']) && $_POST['ville'] != null) {
+			//ville ne peut pas être rempli sans le code postal et l'adresse qui vont avec
+			if ((isset($_POST['code_postal']) && $_POST['code_postal'] == null && !in_array("code postal", $incorrectFields))) { 
+				$incorrectFields[] = "Code postal";
+			}
+			if ((isset($_POST['adresse']) && $_POST['adresse'] == null && !in_array("adresse", $incorrectFields))) {
+				$incorrectFields[] = "Adresse";
+			}
+		}
+
+		//Numéro de téléphone
+
+		if(isset($_POST['numero_de_telephone']) && $_POST['numero_de_telephone'] != null) {
+			if (!preg_match("/^0[0-9]{9}+$/", trim($_POST['numero_de_telephone']))) { 
+				$incorrectFields[] = "Numéro de téléphone";
+			}
+		}
+
+        if(!empty($incorrectFields)){
+            echo "<h3> voici les données mal renseignées</h3>";
+            foreach($incorrectFields as $Fields)
+                echo $Fields. "<br>";
+        }else{
+            //on recupere tout ($_POST)
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $genre = $_POST['genre'];
+            $email = $_POST['email'];
+            $date_de_naissance = $_POST['date_de_naissance'];
+            $adresse = $_POST['adresse'];
+            $code_postal = $_POST['code_postal'];
+            $ville = $_POST['ville'];
+            $numero_de_telephone = $_POST['numero_de_telephone'];
+            $favorite = $user["favorite"];
+            //controle si tout les données sont bien rentré (pas fini)
+
+
+            //on stocke tout dans un array
+            $user = array(
+                "username" => $username,
+                "password" => $password,
+                "nom" => $nom,
+                "prenom" => $prenom,
+                "genre" => $genre,
+                "email" => $email,
+                "date_de_naissance" => $date_de_naissance,
+                "adresse" => $adresse,
+                "code_postal" => $code_postal,
+                "ville" => $ville,
+                "numero_de_telephone" => $numero_de_telephone,
+                "favorite" => $favorite,
+            );
+
+            //encodeage de l'array dans un ficher JSON
+            //set cookie pour recup le nom de l'user 
+            file_put_contents($path, JSON_encode($user));
+        }
+    }
 ?>
 
 <h3>Modifiez les données souhaiter, puis appuyer sur le button modifier!</h3>
@@ -93,7 +198,7 @@ if(isset($_POST['modification_btn'])){
         <br><input type="email" name="email" value="<?php echo $user['email'] ?>"/> <br>
 
         Date de naissence:
-        <br><input type="date" name="date_de_naissence" value="<?php echo $user['date_de_naissence'] ?>"/> <br>
+        <br><input type="date" name="date_de_naissence" value="<?php echo $user['date_de_naissance'] ?>"/> <br>
 
         Adresse:
         <br><input type = "text"  name = "adresse" value="<?php echo $user['adresse'] ?>"/><br>
@@ -103,6 +208,9 @@ if(isset($_POST['modification_btn'])){
 
         Ville:
         <br><input type = "text"  name = "ville" value="<?php echo $user['ville'] ?>"/><br>
+
+        Numero de téléphone:
+        <br><input type = "text"  name = "numero_de_telephone" value="<?php echo $user['numero_de_telephone'] ?>"/><br>
 
         <br/>
         <br/>
