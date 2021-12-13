@@ -55,7 +55,7 @@ if (isset($_POST['modification_btn'])) {
 
 		//Sexe
 
-		if(isset($_POST['genre']) && $_POST['genre'] != null) {
+		if(isset($_POST['genre'])) {
 			if(($_POST['genre']) != ("male" || "female")) {
 				$incorrectFields[] = "Genre";
 			}
@@ -142,7 +142,7 @@ if (isset($_POST['modification_btn'])) {
             $password = $_POST['password'];
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
-            $genre = $_POST['genre'];
+            $genre = isset($_POST['genre']) ? $genre : "";
             $email = $_POST['email'];
             $date_de_naissance = $_POST['date_de_naissance'];
             $adresse = $_POST['adresse'];
@@ -159,7 +159,7 @@ if (isset($_POST['modification_btn'])) {
                 "password" => $password,
                 "nom" => $nom,
                 "prenom" => $prenom,
-                "genre" => $genre,
+                "genre" => $genre ,
                 "email" => $email,
                 "date_de_naissance" => $date_de_naissance,
                 "adresse" => $adresse,
@@ -198,7 +198,7 @@ if (isset($_POST['modification_btn'])) {
         <br><input type="email" name="email" value="<?php echo $user['email'] ?>"/> <br>
 
         Date de naissence:
-        <br><input type="date" name="date_de_naissence" value="<?php echo $user['date_de_naissance'] ?>"/> <br>
+        <br><input type="date" name="date_de_naissance" value="<?php echo $user['date_de_naissance'] ?>"/> <br>
 
         Adresse:
         <br><input type = "text"  name = "adresse" value="<?php echo $user['adresse'] ?>"/><br>
@@ -216,7 +216,7 @@ if (isset($_POST['modification_btn'])) {
         <br/>
     <input type = "submit" name="modification_btn" id = "submit" value = "Modifier"/>
 </form>
-
+<a href="index.php">index.php</a>
 </body>
 </html>
 

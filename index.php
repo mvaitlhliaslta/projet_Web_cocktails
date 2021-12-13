@@ -68,7 +68,7 @@
 
 <!-- nav section only exists when no search query was sent -->
 <?php 
-	if (!isset($_GET["search"])) { ?>
+	if (!(isset($_GET["search"]) || isset($_GET["favDisp"]))) { ?>
 		<nav>
 			<?php 
 				include 'nav.php';
@@ -83,7 +83,9 @@
 		if (isset($_GET["search"])){ // of search querry submitted
 			include 'displays/displaySearch.php';
 		}
-		//else if(isset(
+		else if(isset($_GET["favDisp"])){
+			include("displays/displayFavorite.php");
+		}
 		else
 			include("displays/displayNav.php");	
 	?>
