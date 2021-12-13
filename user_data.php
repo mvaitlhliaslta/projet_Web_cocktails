@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Modification de données</h1>
-<h2>Voici les données entré</h2>
+<h2>Voici les données entrées</h2>
 <?php
     // on recuper le ficher qui a le mot de l'user
     // on decode le ficher JSON

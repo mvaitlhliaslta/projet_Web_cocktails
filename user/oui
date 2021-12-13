@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-{"username":"oui","password":"oui","nom":"mathis","prenom":"math","genre":null,"email":"","date_de_naissance":null,"adresse":"","code_postal":"","ville":"","numero_de_telephone":"","favorite":{"3":"5"}}
-=======
-<<<<<<< HEAD
-{"username":"oui","password":"oui","nom":"joel","prenom":"borgers","genre":"female","email":"eliot.hoff7@gmail.com","date_de_naissance":"","adresse":"","code_postal":"","ville":"","numero_de_telephone":"","favorite":null}
-=======
-{"username":"oui","password":"oui","nom":"joel","prenom":"borgers","genre":null,"email":"","date_de_naissance":null,"adresse":"","code_postal":"","ville":"","numero_de_telephone":"","favorite":["0", "1", "2"]}
->>>>>>> 9d9c95083c7dd9d0c4bac9987da215e1c1c6bdfe
->>>>>>> ee240dae665bf2f2be77aa3c12037e108a9c34d9
+{"username":"oui","password":"oui","nom":"mathis","prenom":"math","genre":null,"email":"","date_de_naissance":null,"adresse":"","code_postal":"","ville":"","numero_de_telephone":"","favorite":["1","2"]}

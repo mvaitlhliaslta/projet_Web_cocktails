@@ -38,10 +38,6 @@
 		include 'search.php';
 	?>
 
-	<a href="?favDisp=<?php if(isset($_SESSION['user'])){ echo "true"; } else { echo "false"; } ?>">
-		<button type="button">Recettes favorites</button>
-	</a>
-
 	<!-- Affichage d'un contenu differant si un user est connecter ou pas -->
 	<?php
 	// verification si un user est connecter 
