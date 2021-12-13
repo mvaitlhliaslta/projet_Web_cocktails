@@ -7,7 +7,7 @@
 error_reporting(E_ALL ^ E_WARNING);
 
 if(isset($_POST['submit_btn'])){
-  $path = "user\\".$_POST["username"];
+  $path = "user/".$_POST["username"];
   $error = false;
   if(isset($_POST['username']) &&  $_POST['username'] == ""){
     echo " Le login ou le mot de passe n'est pas bon ! ";
