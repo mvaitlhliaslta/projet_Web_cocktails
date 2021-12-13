@@ -26,24 +26,6 @@
 			if(btn.className == "favoriteBtnOff")
 			{
 				btn.className = "favoriteBtnOn";
-				 $user = array(
-					"username" => $username,
-					"password" => $password,
-					"nom" => $nom,
-					"prenom" => $prenom,
-					"genre" => $genre,
-					"email" => $email,
-					"date_de_naissance" => $date_de_naissance,
-					"adresse" => $adresse,
-					"code_postal" => $code_postal,
-					"ville" => $ville,
-					"numero_de_telephone" => $numero_de_telephone,
-           		);
-
-            //encodeage de l'array dans un ficher JSON
-            //set cookie pour recup le nom de l'user 
-            file_put_contents($path, JSON_encode($user));
-            header("Location:index.php");
 			}
 			else
 			{
@@ -72,7 +54,7 @@
 	// verification si un user est connecter 
 
 	include "connection_check.php";
-	if(isset($_SESSION["username"])){
+	if(isset( $_SESSION["user"]["username"])){
 		include("logged.php");
 	}else{
 		include("connection.php");
