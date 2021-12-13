@@ -120,10 +120,10 @@ date_default_timezone_set('Europe/Paris');
 			}
 		}
 
-        // $path = "user\\".$_POST["username"];
-        // if(file_exists($path)){
-        //     $incorrectFields[] = "Ce login exite déja";
-        // }
+        $path = "user\\".$_POST["username"];
+        if(file_exists($path)){
+            $incorrectFields[] = "Ce login exite déja";
+        }
 
         if(!empty($incorrectFields)){
             echo "<h3> voici les données mal renseignées</h3>";
@@ -160,6 +160,7 @@ date_default_timezone_set('Europe/Paris');
                 "code_postal" => $code_postal,
                 "ville" => $ville,
                 "numero_de_telephone" => $numero_de_telephone,
+                "favorite" => array(),
             );
 
             //encodeage de l'array dans un ficher JSON
