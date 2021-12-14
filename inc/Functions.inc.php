@@ -13,7 +13,7 @@
 			global $current_root;
 			$recipe = $Recettes[$recipeIndex];
 			if (isset($_SESSION["user"]["username"])) {
-				$path = "user/".$_SESSION["user"]["username"];
+				$path = "users/".$_SESSION["user"]["username"];
 				$user = json_decode(file_get_contents($path), true);
 
 				// check if recette in favorite
@@ -43,7 +43,7 @@
 			$imgFormat = array('.png', '.jpg');
 			foreach($imgFormat as $format)
 			{
-				$dirname = 'Photos/'.str_replace(' ', '_', $recipe['titre']);
+				$dirname = 'assets/Photos/'.str_replace(' ', '_', $recipe['titre']);
 				$dirname = $dirname.$format;
 				if(file_exists($dirname))
 				{
@@ -110,4 +110,31 @@
 			}
 			return $result." / ".'<a href="?current_cat='.spaceToPlus($root).'">'.$root.'</a></p>'."\n";
 		}
+	function connection_check(){
+		error_reporting(E_ALL ^ E_WARNING);
+		$message = "";
+		if(isset($_POST['submit_btn'])){
+		  $path = "users/".$_POST["username"];
+		  $error = false;
+		  if(isset($_POST['username']) &&  $_POST['username'] == ""){
+		    $message = " Le login ou le mot de passe n'est pas bon ! ";
+		    $error = true;
+		  }elseif(isset($_POST['password']) &&  $_POST['password'] == null){
+		    $message = " Le login ou le mot de passe n'est pas bon ! ";
+		    $error = true;
+		  }elseif(!file_get_contents($path)){
+		    $message = " Ce login n'existe pas! ";
+		    $error = true;
+		  }elseif($error == false){
+		    $user = json_decode(file_get_contents($path), true);
+		    if(strcmp($user["username"],$_POST["username"]) == 0 && strcmp( $user["password"],$_POST["password"]) == 0){
+		      $_SESSION["user"]["username"] = $user["username"];
+		    }else{
+		      $message = " Le login ou le mot de passe n'est pas bon ! ";
+		    }
+		  }
+		}
+
+		return $message;
+	}
 ?>

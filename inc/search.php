@@ -79,8 +79,8 @@
 <input type="submit" name="search" value="Rechercher" />
 </form >
 <?php
-if (isset($_GET["submit"])){
-	echo "$message";
+	if (isset($_GET["search"])){
+		echo "$message";
 }
 ?>
 </div>

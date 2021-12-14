@@ -44,7 +44,7 @@ date_default_timezone_set('Europe/Paris');
 		//Sexe
 
 		if(isset($_POST['genre']) && $_POST['genre'] != null) {
-			if(($_POST['genre']) != ("male" || "female")) {
+			if(strcmp($_POST['genre'], ("male")) || strcmp( "female", $_POST['genre']) ) {
 				$incorrectFields[] = "Genre";
 			}
 		}
@@ -62,7 +62,7 @@ date_default_timezone_set('Europe/Paris');
                 
                 $diff = $birthDate->diff($current_date);
 
-				if ($diff > 18) {
+				if ($diff->y > 18) {
 				} else {
 					$incorrectFields[] = "Date de naissance";
 				}
@@ -120,7 +120,7 @@ date_default_timezone_set('Europe/Paris');
 			}
 		}
 
-        $path = "user/".$_POST["username"];
+        $path = "../users/".$_POST["username"];
         if(file_exists($path)){
             $incorrectFields[] = "Ce login exite déja";
         }
@@ -162,11 +162,10 @@ date_default_timezone_set('Europe/Paris');
                 "numero_de_telephone" => $numero_de_telephone,
                 "favorite" => array()
             );
-
             //encodeage de l'array dans un ficher JSON
 
             file_put_contents($path, JSON_encode($user));
-            header("Location:index.php");
+            header("Location: ../index.php");
         }
     }
 ?>
@@ -176,10 +175,10 @@ date_default_timezone_set('Europe/Paris');
 <!-- Syteme pour s'inscrire HTML -->
     <form action="register.php" method="post" >
     <h1> Please enter your information to register</h1>
-        Login Name:
+        Nom d'utilisateur:
         <br><input type = "text"  name = "username" require/><br>
 
-        Password:
+        Mot de passe:
         <br><input type = "password" name = "password" require/><br>
 
         Nom:
@@ -195,7 +194,7 @@ date_default_timezone_set('Europe/Paris');
         Email:
         <br><input type="email" name="email" /> <br>
 
-        Date de naissence:
+        Date de naissance:
         <br><input type="date" name="date_de_naissance" /> <br>
 
         Adresse:
@@ -212,8 +211,8 @@ date_default_timezone_set('Europe/Paris');
 
         <br/>
         <br/>
-     <input type = "submit" name="submit_btn" id = "submit" value = "submit"/>
+     <input type = "submit" name="submit_btn" id = "submit" value = "Valider"/>
     </form>
-    <a href="index.php">index.php</a>
+    <a href="../index.php">Retour au menu principal</a>
 </body>
 </html>

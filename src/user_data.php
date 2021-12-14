@@ -15,26 +15,15 @@
 <?php
     // on recuper le ficher qui a le mot de l'user
     // on decode le ficher JSON
-    $path = "user/". $_SESSION["user"]["username"];
+    $path = "../users/". $_SESSION["user"]["username"];
     $user = json_decode(file_get_contents($path), true);
 
     //on echo tout les données 
-    echo "
-    Username: ".$user['username'],"<br/>
-    Password: ".$user['password'],"<br/>
-    Nom: ".$user['nom'],"<br/>
-    Prenom: ".$user['prenom'],"<br/>
-    Genre: ".$user['genre'],"<br/>
-    Email: ".$user['email'],"<br/>
-    Date de naissance: ".$user['date_de_naissance'],"<br/>
-    Adresse: ".$user['adresse'],"<br/>
-    Code postal: ".$user['code_postal'],"<br/>
-    Ville: ".$user['ville'],"<br>
-    Numéro de telephone: ".$user['numero_de_telephone'];
 
 
-// depart des verifications 
-if (isset($_POST['modification_btn'])) {
+
+    // depart des verifications 
+    if (isset($_POST['modification_btn'])) {
         
         if(isset($_POST['password']) &&  $_POST['password'] == null){
             $incorrectFields[] = "Le mot de passe est obligatoire ! ";
@@ -177,6 +166,19 @@ if (isset($_POST['modification_btn'])) {
             file_put_contents($path, JSON_encode($user));
         }
     }
+    $user = json_decode(file_get_contents($path), true);
+    echo "
+    Username: ".$user['username'],"<br/>
+    Password: ".$user['password'],"<br/>
+    Nom: ".$user['nom'],"<br/>
+    Prenom: ".$user['prenom'],"<br/>
+    Genre: ".$user['genre'],"<br/>
+    Email: ".$user['email'],"<br/>
+    Date de naissance: ".$user['date_de_naissance'],"<br/>
+    Adresse: ".$user['adresse'],"<br/>
+    Code postal: ".$user['code_postal'],"<br/>
+    Ville: ".$user['ville'],"<br>
+    Numéro de telephone: ".$user['numero_de_telephone'];
 ?>
 
 <h3>Modifiez les données souhaiter, puis appuyer sur le button modifier!</h3>
@@ -219,7 +221,7 @@ if (isset($_POST['modification_btn'])) {
         <br/>
     <input type = "submit" name="modification_btn" id = "submit" value = "Modifier"/>
 </form>
-<a href="index.php">index.php</a>
+<a href="../index.php">Retour au menu principal</a>
 </body>
 </html>
 

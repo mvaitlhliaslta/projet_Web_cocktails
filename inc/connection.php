@@ -7,5 +7,5 @@
     <br/>
   </p>
 <input type = "submit" name="submit_btn" id = "submit" value = "se connecter"/>
-<a href ="register.php" type = "button"  id = "register" value = "register">register.php</a>
+<a href ="src/register.php" type = "button"  id = "register" value = "register">register.php</a>
 </form>

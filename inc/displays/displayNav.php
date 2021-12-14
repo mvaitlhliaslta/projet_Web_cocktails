@@ -14,11 +14,11 @@
 		findIngr($current_root);
 		$ingrList = array_unique($ingrList, SORT_STRING);
 		
-		if($disp == 'detail')
+		if(strcmp($disp , 'detail') == 0)
 		{ 	
 			include 'displayDetailed.php';
 		} 
-		elseif($disp == 'synth')
+		else//if($disp == 'synth')
 		{
 			include 'displaySynth.php';
 		}?>

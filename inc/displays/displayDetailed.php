@@ -31,7 +31,7 @@
 	$imgFormat = array('.png', '.jpg');
 	foreach($imgFormat as $format)
 	{
-		$dirname = 'Photos/'.str_replace(' ', '_', $recipe['titre']);
+		$dirname = 'assets/Photos/'.str_replace(' ', '_', $recipe['titre']);
 		$dirname = $dirname.$format;
 		if(file_exists($dirname))
 		{

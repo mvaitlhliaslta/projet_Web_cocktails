@@ -1,9 +1,10 @@
 <?php
 	session_start();
-	
-	include "Donnees.inc.php";
-	include 'functions.inc.php';
 
+	include 'inc/Donnees.inc.php';
+	include 'inc/Functions.inc.php';
+
+	$connection_message = connection_check();
 	//on verifie si l'aliment courant est precisier dans l'entete
 	//et on affecte sa valeur en fonction
 	if(isset($_GET["current_cat"]))
@@ -21,94 +22,65 @@
 	<meta charset="utf-8">
 	<title>Gestion de cocktails</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  	<?php if(isset( $_SESSION["user"]["username"])){ ?>
+  		<script type="text/javascript" src="assets/js/functions.js"></script>
+	<?php } ?>
 </head>
 
 <body>
 <header>
 	<!-- Favorite button-->
-	<input id="favBtn" type="button" value="favorite" 
+	<input id="favBtn" type="button" value="Favoris" 
        onclick="window.location.href = '?favorites=1'" />
+
 	<!-- navigation button -->
 	<input id="navBtn" type="button" value="Navigation" 
        onclick="window.location.href = '?'" />
 
 	<!-- search engine -->
 	<?php
-		include 'search.php';
+		include 'inc/search.php';
 	?>
 
 	<!-- Affichage d'un contenu differant si un user est connecter ou pas -->
 	<?php
-	// verification si un user est connecter 
-
-	include "connection_check.php";
+	// verification si un user est connecté
+	//include "inc/connection_check.php";
+	echo "$connection_message";
 	if(isset( $_SESSION["user"]["username"])){
-		include("logged.php");
+		include('inc/logged.php');
 		?>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script>
-			function fav(btn,recipeIndex)
-			{
-				if(btn.className == "favoriteBtnOff")
-				{
-					btn.className = "favoriteBtnOn";
-					//window.alert(recipeIndex);
-					$.ajax({
-						type: 'GET',
-						url: './addToFavs.php',
-						data: 'ID=' + encodeURIComponent(recipeIndex),
-						success: function(data){
-							if (data) {
-								document.getElementById('message').innerHTML = data;
-							}
-						}
-					})
-
-				}
-				else
-				{
-					btn.className = "favoriteBtnOff";
-					$.ajax({
-						type: 'GET',
-						url: './removeFromFavs.php',
-						data: 'ID=' + encodeURIComponent(recipeIndex),
-						success: function(data){
-							if (data) {
-								document.getElementById('message').innerHTML = data;
-							}
-						}
-					})
-				}
-			}
-		</script>
+		
 		<?php
 	}else{
-		include("connection.php");
+		include('inc/connection.php');
 	}
 	?>
-	<div id="message"></div>
+	<div id="ajoutOuRetraitFav"></div>
 </header>
 
 <!-- nav section only exists when no search query was sent -->
 
 <?php if (!isset($_GET["search"])) { ?>
 		<nav>
-			<?php include 'nav.php'; ?>
+			<?php include 'inc/nav.php'; ?>
 		</nav>
 <?php } ?>
 
 
 <main>
 	<?php if (isset($_GET["search"])){ // of search querry submitted
-			include 'displays/displaySearch.php';
+			include 'inc/displays/displaySearch.php';
 
 		} elseif (isset($_GET["favorites"])) {
-			include 'listFavs.php';
+			include 'inc/displays/displayFavorite.php';
 		} else {
-			include("displays/displayNav.php");	
-		} ?>
+			include('inc/displays/displayNav.php');	
+		} 
+	?>
 </main>
 
 </body>

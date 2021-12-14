@@ -1,8 +1,8 @@
 <?php  
-	include 'Donnees.inc.php';
+	include '../inc/Donnees.inc.php';
 	session_start();
 
-	$path = "user/".$_SESSION["user"]["username"];
+	$path = "../users/".$_SESSION["user"]["username"];
 	$user = json_decode(file_get_contents($path), true);
 	// remove from favorite array
 	if (($key = array_search($_GET["ID"], $user["favorite"])) !== false) {
