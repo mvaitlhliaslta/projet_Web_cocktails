@@ -32,6 +32,8 @@
     Ville: ".$user['ville'],"<br>
     Numéro de telephone: ".$user['numero_de_telephone'];
 
+
+// depart des verifications 
 if (isset($_POST['modification_btn'])) {
         
         if(isset($_POST['password']) &&  $_POST['password'] == null){
@@ -132,6 +134,7 @@ if (isset($_POST['modification_btn'])) {
 			}
 		}
 
+        // on afficeh tout les champs dans les quels il y a des erreurs
         if(!empty($incorrectFields)){
             echo "<h3> voici les données mal renseignées</h3>";
             foreach($incorrectFields as $Fields)

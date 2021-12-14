@@ -1,5 +1,6 @@
 <?php
 //system de login,
+//On fait des tests 
 //On decode le ficher JSON du bon user
 //on verifie que les données entrer sont les même que dans le ficher
 //on set le cookie pour recup les bonnes valeurs lorsqu'il est logged 
