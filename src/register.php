@@ -174,12 +174,12 @@ date_default_timezone_set('Europe/Paris');
 
 <!-- Syteme pour s'inscrire HTML -->
     <form action="register.php" method="post" >
-    <h1> Please enter your information to register</h1>
+    <h1> Veuillez entrer vos données</h1>
         Nom d'utilisateur:
-        <br><input type = "text"  name = "username" require/><br>
+        <br><input type = "text"  name = "username" required="required"/><br>
 
         Mot de passe:
-        <br><input type = "password" name = "password" require/><br>
+        <br><input type = "password" name = "password" required="required"/><br>
 
         Nom:
         <br><input type = "text"  name = "nom" /><br>

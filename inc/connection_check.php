@@ -2,7 +2,7 @@
 //system de login,
 //On fait des tests 
 //On decode le ficher JSON du bon user
-//on verifie que les données entrer sont les même que dans le ficher
+//on verifie que les données entrées sont les même que dans le ficher
 //on set le cookie pour recup les bonnes valeurs lorsqu'il est logged 
 
 error_reporting(E_ALL ^ E_WARNING);

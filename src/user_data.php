@@ -184,10 +184,10 @@
 <h3>Modifiez les données souhaiter, puis appuyer sur le button modifier!</h3>
 <form action="user_data.php" method="post" >
         Login Name:
-        <br><input type = "text"  name = "username"  value="<?php echo $user['username'] ?>" readonly="readonly" require/><br>
+        <br><input type = "text"  name = "username"  value="<?php echo $user['username'] ?>" readonly="readonly" required="required"/><br>
 
         Password:
-        <br><input type = "text" name = "password" require value="<?php echo $user['password'] ?>"/><br>
+        <br><input type = "text" name = "password" required="required" value="<?php echo $user['password'] ?>"/><br>
 
         Nom:
         <br><input type = "text"  name = "nom" value="<?php echo $user['nom'] ?>"/><br>

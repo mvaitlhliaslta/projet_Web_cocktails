@@ -1,1 +1,1 @@
-{"username":"oui","password":"oui","nom":"matzis","prenom":"math","genre":"","email":"","date_de_naissance":"","adresse":"","code_postal":"","ville":"","numero_de_telephone":"","favorite":["3","0","4","1"]}
+{"username":"oui","password":"oui","nom":"matzis","prenom":"math","genre":"","email":"","date_de_naissance":"","adresse":"","code_postal":"","ville":"","numero_de_telephone":"","favorite":{"0":"3","2":"4","3":"1"}}
